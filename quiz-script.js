@@ -222,7 +222,24 @@ while (questionCount) {
 }
 
 
+function isQuizComplete() {
+    for (let i = 0; i < indexOfQuestionsSelected.length; i++) {
+        const questionIndex = indexOfQuestionsSelected[i];
+        const question = quizQuestions[questionIndex];
+        const selectedOption = document.querySelector(`input[name='${question.name}']:checked`);
+        if (!selectedOption) {
+            return false; 
+        }
+    }
+    return true; 
+}
+
+let mark = 0;
 function dispalyAnswers() {
+    if (!isQuizComplete()) {
+        alert("Please answer all questions");
+        return;
+    }
     for (let i = 0; i < indexOfQuestionsSelected.length; i++) {
         const questionIndex = indexOfQuestionsSelected[i];
         const question = quizQuestions[questionIndex];
@@ -235,6 +252,7 @@ function dispalyAnswers() {
 
 
             if (labelEl.textContent === question.answer) {
+                mark++;
                 ansDiv.classList.add("correct-answer");
             } else {
                 ansDiv.classList.add("wrong-answer");
@@ -242,12 +260,10 @@ function dispalyAnswers() {
                 const correctOptionDiv = ansDiv.parentNode.children[correctOptionIndex + 1];
                 correctOptionDiv.classList.add("correct-answer");
             }
-        } else {
-            const correctOptionIndex = question.options.indexOf(question.answer);
-            const correctOptionDiv = quizBody.querySelectorAll(`input[name='${question.name}']`)[correctOptionIndex].closest('.inner-div');
-            correctOptionDiv.classList.add("correct-answer");
         }
     }
+
+    quizMarks();
 }
 const buttonEl = document.createElement("input");
 buttonEl.type = "button";
@@ -257,6 +273,15 @@ buttonEl.addEventListener("click", () => {
     dispalyAnswers();
 
 });
+
+function quizMarks(){
+    const resultDiv = document.createElement("div");
+    resultDiv.id = "result";
+    const h2El =  document.createElement("h2");
+    h2El.textContent = "YOUR SCORE OUT OF 10 IS : " + mark;
+    resultDiv.appendChild(h2El);
+    quizBody.appendChild(resultDiv);
+}
 
 
 quizBody.appendChild(buttonEl);
