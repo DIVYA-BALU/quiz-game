@@ -183,7 +183,7 @@ const quizQuestions = [
 const indexOfQuestionsSelected = [];
 let questionCount = 10;
 let count = 0;
-while(questionCount) {
+while (questionCount) {
     const questionIndex = Math.floor(Math.random() * quizQuestions.length);
 
     if (!indexOfQuestionsSelected.includes(questionIndex)) {
@@ -194,14 +194,14 @@ while(questionCount) {
         const question = quizQuestions[questionIndex];
 
         const h4El = document.createElement("h4");
-        h4El.textContent = ++count+". "+ question.question;
+        h4El.textContent = ++count + ". " + question.question;
         div.appendChild(h4El);
 
         const options = question.options;
 
         options.map((option, index) => {
             const innerDiv = document.createElement("div");
-            innerDiv.id = "inner-div";
+            innerDiv.classList.add("inner-div");
             const inputEl = document.createElement("input");
             inputEl.type = "radio";
             inputEl.name = question.name;
@@ -230,14 +230,22 @@ function dispalyAnswers() {
         const selectedOption = document.querySelector(`input[name='${question.name}']:checked`);
 
         if (selectedOption) {
-            const ansDiv = selectedOption.closest('#inner-div');
+            const ansDiv = selectedOption.closest('.inner-div');
             const labelEl = ansDiv.querySelector('label');
 
+
             if (labelEl.textContent === question.answer) {
-                ansDiv.style.backgroundColor = 'green';
+                ansDiv.classList.add("correct-answer");
             } else {
-                ansDiv.style.backgroundColor = 'red';
+                ansDiv.classList.add("wrong-answer");
+                const correctOptionIndex = question.options.indexOf(question.answer);
+                const correctOptionDiv = ansDiv.parentNode.children[correctOptionIndex + 1];
+                correctOptionDiv.classList.add("correct-answer");
             }
+        } else {
+            const correctOptionIndex = question.options.indexOf(question.answer);
+            const correctOptionDiv = quizBody.querySelectorAll(`input[name='${question.name}']`)[correctOptionIndex].closest('.inner-div');
+            correctOptionDiv.classList.add("correct-answer");
         }
     }
 }

@@ -24,7 +24,7 @@ h4 {
     align-items: center;
 }
 
-#inner-div {
+.inner-div {
     display: block;
     padding: 5px;
     padding-bottom: 10px;
@@ -38,7 +38,7 @@ h4 {
     background-color: green/* Your desired background color ;
 } */
 
-#inner-div:hover {
+.inner-div:hover {
     background-color: #a5a7a5;
 }
 
@@ -51,4 +51,12 @@ input[type="button"] {
     color: #fff; 
     border: none;
     border-radius: 5px;
+}
+
+.correct-answer{
+    background-color: rgb(139, 223, 139);
+}
+
+.wrong-answer{
+    background-color: rgb(240, 127, 127);
 }
