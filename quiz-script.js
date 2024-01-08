@@ -235,11 +235,13 @@ function isQuizComplete() {
 }
 
 let mark = 0;
+let calculateCount = 0;
 function dispalyAnswers() {
     if (!isQuizComplete()) {
         alert("Please answer all questions");
         return;
     }
+    calculateCount++;
     for (let i = 0; i < indexOfQuestionsSelected.length; i++) {
         const questionIndex = indexOfQuestionsSelected[i];
         const question = quizQuestions[questionIndex];
@@ -262,8 +264,8 @@ function dispalyAnswers() {
             }
         }
     }
-
-    quizMarks();
+    if(calculateCount === 1)
+        quizMarks();
 }
 const buttonEl = document.createElement("input");
 buttonEl.type = "button";
