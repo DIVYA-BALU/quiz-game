@@ -26,22 +26,21 @@ h4 {
 
 .inner-div {
     display: block;
-    padding: 5px;
-    padding-bottom: 10px;
+    padding: 10px;
     margin: 5px;
     border: 2px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
 }
 
-/* input[type="radio"]:checked + label + #inner-div {
-    background-color: green/* Your desired background color ;
-} */
 
 .inner-div:hover {
     background-color: #a5a7a5;
 }
 
+.inner-div label{
+    padding-left: 10px;
+}
 input[type="button"] {
     margin-left: 240px;
     margin-top: 20px;

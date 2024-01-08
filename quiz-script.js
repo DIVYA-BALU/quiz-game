@@ -208,9 +208,9 @@ while (questionCount) {
 
             const labelEl = document.createElement("label");
             labelEl.textContent = option;
-            const breakEl = document.createElement("br");
+            // const breakEl = document.createElement("br");
 
-            innerDiv.appendChild(breakEl);
+            // innerDiv.appendChild(breakEl);
             innerDiv.appendChild(inputEl);
             innerDiv.appendChild(labelEl);
             div.appendChild(innerDiv);
